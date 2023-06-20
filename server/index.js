@@ -7,7 +7,7 @@ const { createServer }=  require("http");
 
 app.use(cors()); // Add cors middleware
 
-// const server = http.createServer(app);
+const server = http.createServer(app);
 
 // const io = new Server(server, {
 //   cors: {
