@@ -3,17 +3,25 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
+const { createServer }=  require("http");
 
 app.use(cors()); // Add cors middleware
 
-const server = http.createServer(app);
+// const server = http.createServer(app);
 
-const io = new Server(server, {
+// const io = new Server(server, {
+//   cors: {
+//     // origin: ["https://nainishchat.up.railway.app/", "https://nainishchat.up.railway.app/Bhopal","https://nainishchat.up.railway.app/Gwalior","https://nainishchat.up.railway.app/Shujalpur","https://nainishchat.up.railway.app/Jabalpur" ,"https://nainishchat.up.railway.app/Lakhnadown"] ,
+//     origin: 'https://nainishchat.up.railway.app/Bhopal',
+//     methods: ["GET", "POST"],
+//   },
+// });
+
+const httpServer = createServer();
+const io = new Server(httpServer, {
   cors: {
-    // origin: ["https://nainishchat.up.railway.app/", "https://nainishchat.up.railway.app/Bhopal","https://nainishchat.up.railway.app/Gwalior","https://nainishchat.up.railway.app/Shujalpur","https://nainishchat.up.railway.app/Jabalpur" ,"https://nainishchat.up.railway.app/Lakhnadown"] ,
-    origin: 'https://nainishchat.up.railway.app/Bhopal',
-    methods: ["GET", "POST"],
-  },
+    origin:  ["https://nainishchat.up.railway.app/", "https://nainishchat.up.railway.app/Bhopal","https://nainishchat.up.railway.app/Gwalior","https://nainishchat.up.railway.app/Shujalpur","https://nainishchat.up.railway.app/Jabalpur" ,"https://nainishchat.up.railway.app/Lakhnadown"]
+  }
 });
 
 const CHAT_BOT = "ChatBot";
