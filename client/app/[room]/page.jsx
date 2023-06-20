@@ -3,6 +3,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { socket } from "../components/socket";
 import { data } from "autoprefixer";
+import "./page.css"
 import MessageComponent from "../components/MessageComponent";
 
 function room() {
@@ -39,11 +40,15 @@ function room() {
   };
   useEffect(() => {
     socket.on("chat_message", (msg) => {
-      setMessages((prev) => [...prev, msg]);
+      setMessages((prev) => [msg,...prev]);
       console.log(msg)
     });
     socket.on("joined_data", (data) => {
       setJoinData(data);
+    });
+    socket.on("user_detail", (data) => {
+      console.log(data)
+     data!="" && setUser(data);
     });
     socket.on("chatroom_users", (data) => {
       setActiveUsers(data);
@@ -51,8 +56,8 @@ function room() {
   }, [socket]);
 
   return (
-    <main className="w-full h-full bg-[#343a3f]">
-      <div className="p-5">
+    <main className="w-full h-screen bg-[#343a3f]">
+      {/* <div className="">
         <div>
           {activeUsers.map((item, index) => {
             return (
@@ -62,8 +67,8 @@ function room() {
             );
           })}
         </div>
-      </div>
-      <div className=" w-full p-5 h-screen max-w-5xl mx-auto">
+      </div> */}
+      <div className=" w-full p-5 h-screen max-w-5xl flex flex-col justify-between mx-auto">
         <h1 className=" text-center font-bold text-4xl text-[#999]">
           ChatRoom :{" "}
           <span className="text-[#d8d8d8]  capitalize">{params.room + user}</span>
@@ -71,12 +76,12 @@ function room() {
         {joinData && (
           <p className="text-gray-100">{joinData.username} ki GC me entry</p>
         )}
-        <div className=" overflow-y-auto max-h-96 h-[100%] flex flex-col">
+        <div className=" overflow-y-scroll  h-full  px-8 flex flex-col-reverse chat-area">
           {messages.map((item, index) => {
             return <MessageComponent key={index} text={item.text} sender={item.sender} />;
           })}
         </div>
-        <form onSubmit={handleSubmit} className=" focus:border-none w-full">
+        <form onSubmit={handleSubmit} className="flex justify-center focus:border-none w-full">
           <input
             className=" focus:outline-none w-[75%]"
             style={nameInputStyles}

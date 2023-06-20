@@ -1,0 +1,8 @@
+.chat-area::-webkit-scrollbar{
+display: none;
+}
+
+.chat-area{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */   
+}
