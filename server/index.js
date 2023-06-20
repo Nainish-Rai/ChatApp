@@ -10,7 +10,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://chatapp-production-fb45.up.railway.app/",
+    origin: "https://chatapp-production-fb45.up.railway.app/"| "https://chatapp-production-fb45.up.railway.app/Bhopal"|"https://chatapp-production-fb45.up.railway.app/Gwalior"|"https://chatapp-production-fb45.up.railway.app/Shujalpur"|"https://chatapp-production-fb45.up.railway.app/Jabalpur" | "https://chatapp-production-fb45.up.railway.app/Lakhnadown" ,
     methods: ["GET", "POST"],
   },
 });

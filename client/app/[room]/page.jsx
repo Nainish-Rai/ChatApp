@@ -56,7 +56,7 @@ function room({ userDetails }) {
 
   return (
     <main className="w-full h-screen bg-[#343a3f] flex">
-      <div className="p-4 m-2 border px-16">
+      <div className="p-4 hidden sm:block m-2 border px-16">
         <h2 className="font-semibold text-gray-300">Active Users</h2>
         <div>
           {activeUsers.map((item, index) => {
@@ -72,7 +72,7 @@ function room({ userDetails }) {
         <h1 className=" text-center font-bold text-4xl text-[#999]">
           ChatRoom :{" "}
           <span className="text-[#d8d8d8]  capitalize">
-            {params.room + user}
+            {params.room}
           </span>
         </h1>
         {joinData && (
