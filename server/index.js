@@ -20,7 +20,8 @@ const server = http.createServer(app);
 const httpServer = createServer();
 const io = new Server(httpServer, {
   cors: {
-    origin:  ["https://nainishchat.up.railway.app/", "https://nainishchat.up.railway.app/Bhopal","https://nainishchat.up.railway.app/Gwalior","https://nainishchat.up.railway.app/Shujalpur","https://nainishchat.up.railway.app/Jabalpur" ,"https://nainishchat.up.railway.app/Lakhnadown"]
+    origin:  ["https://nainishchat.up.railway.app/", "https://nainishchat.up.railway.app/Bhopal","https://nainishchat.up.railway.app/Gwalior","https://nainishchat.up.railway.app/Shujalpur","https://nainishchat.up.railway.app/Jabalpur" ,"https://nainishchat.up.railway.app/Lakhnadown"],
+    methods: ["GET", "POST"],
   }
 });
 
