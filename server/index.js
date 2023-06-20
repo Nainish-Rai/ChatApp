@@ -10,7 +10,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:4000",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });
@@ -34,7 +34,6 @@ io.on("connection", (socket) => {
     allUsers.push({ id: socket.id, username, room }); // adding connected users to all users
     chatRoomUsers = allUsers.filter((user) => user.room === room); //filtering chatroom users
     socket.to(room).emit("chatroom_users", chatRoomUsers); // emitting .to(room) only
-    socket.emit("chatroom_users", chatRoomUsers); // emitting to everyone
     socket.on("chat_message", (data) => {  //recieving chat_message and emmiting back to only .to(room)
       io.to(room).emit("chat_message", data);
     });
